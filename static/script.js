@@ -21,3 +21,17 @@ function catGenerator(){
      image.src = "cat.gif"
      div.appendChild(image)
 }
+
+function rpsGame(yourChoice){
+     console.log(yourChoice)
+     var human ,botChoice;
+     console.log(botPick())
+     //rpsfrontEnd(yourChoice.id,botChoice,message)
+}
+
+function botPick()
+{
+     var bot_rps= ["rock","paper","scissors"]
+     return bot_rps[Math.floor(Math.random()*3)]
+}
+
