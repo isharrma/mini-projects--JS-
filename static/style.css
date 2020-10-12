@@ -1,4 +1,4 @@
-.container-1{
+.container-1 {
     border: 1px solid black;
     width : 75%;
     margin: 0 auto;
@@ -27,5 +27,19 @@
 .flex-box-result img{
     border: 1px solid blueviolet;
     margin: 10px;
-    box-shadow:  0px 10px 25px orange; 
+     
+}
+
+.flex-box-game{
+    border: 1px solid black;
+    flex-wrap :wrap;
+    justify-content: space-around ;
+}
+
+.flex-box-game img{
+    margin: 10px;
+}
+
+.flex-box-game img:hover{
+    box-shadow:  0px 10px 25px goldenrod;
 }

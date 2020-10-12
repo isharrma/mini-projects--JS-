@@ -13,11 +13,11 @@ function ageInDays(){
 function reset(){
      document.getElementById('ageinDays').remove()
 }
-//ageInDays()
+
 
 function catGenerator(){
      var image = document.createElement('img')
      var div = document.getElementById('cat-generator')
-     image.src = "C:/Users/DELL/Desktop/cat.gif"
+     image.src = "cat.gif"
      div.appendChild(image)
 }
