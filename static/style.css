@@ -38,6 +38,8 @@
 
 .flex-box-game img{
     margin: 10px;
+    flex-wrap :wrap;
+    justify-content: space-around ;
 }
 
 .flex-box-game img:hover{
