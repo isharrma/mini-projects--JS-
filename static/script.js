@@ -72,14 +72,30 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage){
      botDiv = document.createElement('div')
      messageDiv = document.createElement('div')
 
-     humanDiv.innerHTML = "<img src='"+ imageDB[humanImageChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(37,50,233,1)'>"
-     botDiv.innerHTML = "<img src='"+ imageDB[botImageChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(243,30,24,1)'>"
-     messageDiv.innerHTML = "<h3 style='color:" + finalMessage['color'] + "; font-size: 60px; padding: 30px;'>" + finalMessage['message'] + "</h3>"
+     humanDiv.innerHTML = "<img id='human' src='"+ imageDB[humanImageChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(37,50,233,1)'>"
+     botDiv.innerHTML = "<img id='bot' src='"+ imageDB[botImageChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(243,30,24,1)'>"
+     messageDiv.innerHTML = "<h3 id='message' style='color:" + finalMessage['color'] + "; font-size: 60px; padding: 30px;'>" + finalMessage['message'] + "</h3>"
 
      document.getElementById('flex-box-game').appendChild(humanDiv)
      document.getElementById('flex-box-game').appendChild(messageDiv)
      document.getElementById('flex-box-game').appendChild(botDiv)
+
+}
+
+function rpsReset(){
+     document.getElementById('human').remove()
+     document.getElementById('bot').remove()
+     document.getElementById('message').remove()
+
+     RPS_rock = document.createElement('div')
+     RPS_paper = document.createElement('div')
+     RPS_scissors = document.createElement('div')
+     RPS_rock.innerHTML = '<img src="rock.png" id="rock" height=150 width=150 onclick="rpsGame(this)">'
+     RPS_paper.innerHTML = '<img src="hand.png" id="paper" height=150 width=150 onclick="rpsGame(this)">' 
+     RPS_scissors.innerHTML = '<img src="scissors.png" id="scissors" height=150 width=150 onclick="rpsGame(this)">'
+
+     document.getElementById('flex-box-game').appendChild(RPS_rock)
+     document.getElementById('flex-box-game').appendChild(RPS_paper)
+     document.getElementById('flex-box-game').appendChild(RPS_scissors)
      
-
-
 }
