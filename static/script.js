@@ -67,7 +67,8 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage){
      document.getElementById('rock').remove()
      document.getElementById('paper').remove()
      document.getElementById('scissors').remove()
-
+     
+     
      humanDiv = document.createElement('div')
      botDiv = document.createElement('div')
      messageDiv = document.createElement('div')
@@ -98,4 +99,54 @@ function rpsReset(){
      document.getElementById('flex-box-game').appendChild(RPS_paper)
      document.getElementById('flex-box-game').appendChild(RPS_scissors)
      
+}
+
+var all_buttons = document.getElementsByTagName('button')
+
+var copyAllButtons = []
+for(let i=0;i < all_buttons.length;i++){
+     copyAllButtons.push(all_buttons[i].classList[1])
+}
+console.log(copyAllButtons)
+
+function buttonColorChange(buttonValue){
+     if(buttonValue.value == 'red'){
+          buttonRed()
+     }else if(buttonValue.value == 'green'){
+          buttonGreen()
+     }else if(buttonValue.value == 'random'){
+          buttonRandom()
+     }else if(buttonValue.value == 'reset'){
+          buttonReset()
+     }
+}
+
+function buttonRed(){
+     for(let i=0; i < all_buttons.length; i++){
+          all_buttons[i].classList.remove(all_buttons[i].classList[1])
+          all_buttons[i].classList.add('btn-danger')
+     }
+}
+
+function buttonGreen(){
+     for(let i=0; i < all_buttons.length ; i++){
+          all_buttons[i].classList.remove(all_buttons[i].classList[1])
+          all_buttons[i].classList.add('btn-success')
+     }
+}
+
+function buttonReset(){
+     for(let i=0; i < all_buttons.length ; i++){
+          all_buttons[i].classList.remove(all_buttons[i].classList[1])
+          all_buttons[i].classList.add(copyAllButtons[i])
+     }
+}
+
+function buttonRandom(){
+     var choices = ['btn-primary' , 'btn-warning' , 'btn-succes' ,'btn-danger']
+     rC = choices[Math.floor(Math.random()*4)]
+     for(let i =0; i < all_buttons.lenght ; i++){
+          all_buttons[i].classList.remove(all_buttons[i].classList[1])
+          all_buttons[i].classList.add(rC)
+     }
 }
