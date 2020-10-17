@@ -49,11 +49,21 @@
         <div class="flex-box-container-1">
             <h3>Challenge 4: Change the Color of ALL bUTTONS!</h3>
         </div>
-        <div class='flex-box-button'></div>
-        <button>Yeet!</button>
-        <button>XOXO</button>
-        <button>skrrrt!</button>
-        <button>Holy Moses!</button>
+        <div class='flex-box-container-1'>
+        <form acion=''>
+            <select name='backdrop' id='background' onchange='buttonColorChange(this)'>
+                <option value='random'>Random</option>
+                <option value='red'>Red</option>
+                <option value='green'>Green</option>
+                <option value='reset'>Reset</option>
+
+            </select>
+        </form>
+        <button class='btn btn-primary'>Yeet!</button>
+        <button class='btn btn-danger'>XOXO</button>
+        <button class='btn btn-warning'>skrrrt!</button>
+        <button class='btn btn-success'>Holy Moses!</button>
+    </div>
     </div>
    
 
