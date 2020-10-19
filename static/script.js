@@ -107,7 +107,6 @@ var copyAllButtons = []
 for(let i=0;i < all_buttons.length;i++){
      copyAllButtons.push(all_buttons[i].classList[1])
 }
-console.log(copyAllButtons)
 
 function buttonColorChange(buttonValue){
      if(buttonValue.value == 'red'){
@@ -144,8 +143,8 @@ function buttonReset(){
 
 function buttonRandom(){
      var choices = ['btn-primary' , 'btn-warning' , 'btn-succes' ,'btn-danger']
-     rC = choices[Math.floor(Math.random()*4)]
-     for(let i =0; i < all_buttons.lenght ; i++){
+     for(let i=0; i < all_buttons.length; i++){
+          rC = choices[Math.floor(Math.random()*4)]
           all_buttons[i].classList.remove(all_buttons[i].classList[1])
           all_buttons[i].classList.add(rC)
      }

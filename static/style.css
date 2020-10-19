@@ -1,17 +1,50 @@
-.container-1 {
+.container-1, .container-2{
     border: 1px solid black;
     width : 75%;
     margin: 0 auto;
     text-align: center;
 }
 
-.flex-box-container-1 {
+
+.flex-box-container-1, .flex-blackjack-row-1 , .flex-blackjack-row-2 , .flex-blackjack-row-3{
     display: flex;
     border: 1px solid black;
     padding: 10px;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
 }
+
+.flex-blackjack-row-1 , .flex-blackjack-row-2{
+    background: url(blackjack.jpg) center; 
+    color: white;
+}
+
+.flex-blackjack-row-1 div{
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    height: 350px;
+}
+
+.flex-blackjack-row-1 img{
+    width: 25%;
+    padding: 10px;
+
+}
+
+.flex-blackjack-row-2 button{
+    flex: 1;
+    border: 1px solid black;
+    margin: 1   0px
+
+}
+
+table, th, td{
+    padding: 10px;
+    border: 1px solid black;
+}
+
 
 .flex-box-container-1 div{
     display: flex;
@@ -47,8 +80,8 @@
     box-shadow:  0px 10px 25px goldenrod;
 }
 
-.flex-box-game div{
-    margin: 10px;
+.flex-box-game div img{
+    margin: 0 auto;
     flex-wrap :wrap;
     justify-content: space-around ;
 }
