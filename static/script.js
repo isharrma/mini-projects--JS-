@@ -1,5 +1,5 @@
 
-
+//------------------------------- AGE CALCULATOR -------------------------
 function ageInDays(){
      var birthyear = prompt("Which year were you born sweety?")
      var ageinDays = (2020 - birthyear) * 365
@@ -14,6 +14,8 @@ function reset(){
      document.getElementById('ageinDays').remove()
 }
 
+//------------------------------- CAT GENERATOR -------------------------
+
 
 function catGenerator(){
      var image = document.createElement('img')
@@ -21,6 +23,8 @@ function catGenerator(){
      image.src = "cat.gif"
      div.appendChild(image)
 }
+
+//------------------------------- ROCK PAPER SCISSORS GAME -------------------------
 
 function rpsGame(yourChoice){
      var humanChoice ,botChoice;
@@ -151,7 +155,7 @@ function buttonRandom(){
 }
 
 
-//BLACKJACK GAME
+//------------------------------- BLACKJACK GAME ------------------------------
 
 let blackjackGame = {
      'you': { 'scoreSpan': '#your-blackjack-result','div': '#your-box','score':0},
@@ -169,26 +173,29 @@ document.querySelector('#blackjack-hit-button').addEventListener('click',blackja
 document.querySelector('#blackjack-deal-button').addEventListener('click',blackjackDeal)
 
 function blackjackHit(){
-     let card = randomCard()
-     showCard(card,YOU)
-     showCard(card,DEALER)
-     updateScore(card, DEALER )
-     blackjackyourScore = blackjackGame['dealer']['score']
-    showScore(DEALER)
-    
+          let card = randomCard()
+          showCard(card,YOU)
+          updateScore(card, YOU)
+          blackjackyourScore = blackjackGame['you']['score']
+          showScore(YOU)
 }
+
 
 function randomCard(){
      let randomIndex = Math.floor(Math.random()*13)
      return blackjackGame['cards'][randomIndex]
 }
 
+
 function showCard(card,activePlayer){
-     let cardImage = document.createElement('img')
-     cardImage.src = 'static/image/' + card +'.png'
-     document.querySelector(activePlayer['div']).appendChild(cardImage)
-     hitSound.play()
+     if(activePlayer['score'] <= 21){
+          let cardImage = document.createElement('img')
+          cardImage.src = 'static/image/' + card +'.png'
+          document.querySelector(activePlayer['div']).appendChild(cardImage)
+          hitSound.play()
+     }
 }
+
 
 function blackjackDeal(){
      let yourImages = document.querySelector('#your-box').querySelectorAll('img')
@@ -201,8 +208,9 @@ function blackjackDeal(){
      for(i=0; i < dealerImages.length; i++){
           dealerImages[i].remove()
      }
-     removeScore(DEALER)
+     removeScore(YOU)
 }
+
 
 function updateScore(card,activePlayer){
      if(card =='A'){
@@ -212,15 +220,26 @@ function updateScore(card,activePlayer){
                activePlayer['score'] += blackjackGame['cardsMap'][card][0]
           }
      }
-
-     activePlayer['score'] += blackjackGame['cardsMap'][card]
+     else{
+          activePlayer['score'] += blackjackGame['cardsMap'][card]
+     }
+     
 }
+
 
 function showScore(activePlayer){
+     if(activePlayer['score'] > 21){
+          document.querySelector(activePlayer['scoreSpan']).style.color = "red"
+          document.querySelector(activePlayer['scoreSpan']).textContent = "BUST"
+          
+     }
      document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']
 }
+
 
 function removeScore(activePlayer){
      activePlayer['score'] = 0 
      document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']
+     document.querySelector(activePlayer['scoreSpan']).style.color = 'white'
+
 }
