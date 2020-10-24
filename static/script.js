@@ -229,11 +229,13 @@ function updateScore(card,activePlayer){
 
 function showScore(activePlayer){
      if(activePlayer['score'] > 21){
-          document.querySelector(activePlayer['scoreSpan']).style.color = "red"
+
           document.querySelector(activePlayer['scoreSpan']).textContent = "BUST"
+          document.querySelector(activePlayer['scoreSpan']).style.color = "red"
           
-     }
-     document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']
+     }else{
+          document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score']
+     } 
 }
 
 
