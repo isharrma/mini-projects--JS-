@@ -161,7 +161,10 @@ let blackjackGame = {
      'you': { 'scoreSpan': '#your-blackjack-result','div': '#your-box','score':0},
      'dealer': {'scoreSpan':'#dealer-blackjack-result', 'div': '#dealer-box','score': 0},
      'cards' : ['2' , '3','4','5','6','7','8','9','10','K','J','Q','A'],
-     'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10,'J':10,'Q':10,'A':[1,11] }
+     'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10,'J':10,'Q':10,'A':[1,11] },
+     'wins' : 0,
+     'losses' : 0,
+     'draws': 0
 }
 
 const YOU = blackjackGame['you']
@@ -182,6 +185,10 @@ function blackjackHit(){
           updateScore(card,YOU)
           blackjackyourScore = blackjackGame['you']['score']
           showScore(YOU)
+
+          if(YOU['score'] == 21){
+               showResult(YOU)
+          }
 }
 
 
@@ -258,6 +265,10 @@ function dealerLogic(){
      showCard(card, DEALER)
      updateScore(card, DEALER)
      showScore(DEALER)
+
+     if(DEALER['score'] > 15){
+          blackjackDeal()
+     }
 }
 
 
@@ -267,23 +278,23 @@ function computeWinner(){
      if(YOU['score'] <=21){
           if(YOU['score'] > DEALER['score'] || DEALER['score'] > 21){
                winner = YOU
-               console.log("WOn")
+               blackjackGame['wins']++
           }
           else if(YOU['score'] < DEALER['score']){
                winner = DEALER
-               console.log("Lost")
+               blackjackGame['losses']++
           }
           else if(YOU['score'] === DEALER['score']){
-               console.log("draw")
+               blackjackGame['draws']++
           }
 
      }
      else if(YOU['score'] > 21 && DEALER['score'] <=21){
           winner = DEALER
-          console.log("Lost")
+          blackjackGame['losses']++
      }
           else if(YOU['score'] > 21 && DEALER['score'] > 21){
-               console.log("Draw")
+               blackjackGame['draws']++
           }
      
      console.log(winner)
@@ -300,15 +311,18 @@ function showResult(winner){
           message = "YOU WON :)"
           messageColor = "green"
           WinSound.play()
+          document.querySelector('#wins').textContent = blackjackGame['wins']
      }
      else if(winner === DEALER){
           message = "YOU LOST :("
           messageColor = 'red'
           LostSound.play()
+          document.querySelector('#losses').textContent = blackjackGame['losses']
      }
      else{
           message = "DRAW"
           messageColor = 'black'
+          document.querySelector('#draws').textContent = blackjackGame['draws']
      }
      document.querySelector('#blackjack-result').textContent = message
      document.querySelector('#blackjack-result').style.color = messageColor
