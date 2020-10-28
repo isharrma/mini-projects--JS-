@@ -164,7 +164,9 @@ let blackjackGame = {
      'cardsMap': {'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'K':10,'J':10,'Q':10,'A':[1,11] },
      'wins' : 0,
      'losses' : 0,
-     'draws': 0
+     'draws': 0,
+     'isStand': false,
+     'turnsOver': false
 }
 
 const YOU = blackjackGame['you']
@@ -180,15 +182,17 @@ document.querySelector('#blackjack-deal-button').addEventListener('click',blackj
 document.querySelector('#blackjack-stand-button').addEventListener('click',dealerLogic)
 
 function blackjackHit(){
+     if(blackjackGame['isStand'] == false){
           let card = randomCard()
           showCard(card,YOU)
           updateScore(card,YOU)
           blackjackyourScore = blackjackGame['you']['score']
           showScore(YOU)
-
           if(YOU['score'] == 21){
                showResult(YOU)
           }
+     }     
+       
 }
 
 
@@ -208,20 +212,26 @@ function showCard(card,activePlayer){
 }
 
 
-function blackjackDeal(){
-     computeWinner()
-     let yourImages = document.querySelector('#your-box').querySelectorAll('img')
-     let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img')
+function blackjackDeal(){  
+     if(blackjackGame['turnsOver'] == true){
 
-     for(i=0; i < yourImages.length; i++){
-          yourImages[i].remove()
-     }
-
-     for(i=0; i < dealerImages.length; i++){
-          dealerImages[i].remove()
-     }
-     removeScore(YOU)
-     removeScore(DEALER)
+          let yourImages = document.querySelector('#your-box').querySelectorAll('img')
+          let dealerImages = document.querySelector('#dealer-box').querySelectorAll('img')
+     
+          for(i=0; i < yourImages.length; i++){
+               yourImages[i].remove()
+          }
+     
+          for(i=0; i < dealerImages.length; i++){
+               dealerImages[i].remove()
+          }
+          removeScore(YOU)
+          removeScore(DEALER)
+     
+          document.querySelector('#blackjack-result').textContent = "Let's Play"
+          document.querySelector('#blackjack-result').style.color = "black"
+          blackjackGame['isStand'] = false
+     }   
 }
 
 
@@ -261,18 +271,27 @@ function removeScore(activePlayer){
 
 
 function dealerLogic(){
-     let card = randomCard()
-     showCard(card, DEALER)
-     updateScore(card, DEALER)
-     showScore(DEALER)
-
-     if(DEALER['score'] > 15){
-          blackjackDeal()
+     
+     if(blackjackGame['isStand'] == true){
+          while(DEALER['score'] <= 15){
+               let card = randomCard()
+               showCard(card, DEALER)
+               updateScore(card, DEALER)
+               showScore(DEALER)
+          }
+          
+     
+          if(DEALER['score'] > 15){
+               let winner = computeWinner()
+               showResult(winner)
+          }
      }
+     blackjackGame['isStand'] = false 
 }
 
 
 function computeWinner(){
+     blackjackGame['turnsOver'] = true
      let winner
 
      if(YOU['score'] <=21){
@@ -296,8 +315,7 @@ function computeWinner(){
           else if(YOU['score'] > 21 && DEALER['score'] > 21){
                blackjackGame['draws']++
           }
-     
-     console.log(winner)
+     console.log(blackjackGame['turnsOver'])
      showResult(winner)
      return winner
      
