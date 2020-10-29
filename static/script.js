@@ -191,8 +191,7 @@ function blackjackHit(){
           if(YOU['score'] == 21){
                showResult(YOU)
           }
-     }     
-       
+     }       
 }
 
 
@@ -270,14 +269,19 @@ function removeScore(activePlayer){
 }
 
 
-function dealerLogic(){
-     
+function sleep(ms){
+     return new Promise(resolve => setTimeout(resolve,ms))
+} 
+
+async function dealerLogic(){
+     blackjackGame['isStand'] = true
      if(blackjackGame['isStand'] == true){
           while(DEALER['score'] <= 15){
                let card = randomCard()
                showCard(card, DEALER)
                updateScore(card, DEALER)
                showScore(DEALER)
+               await sleep(1000)
           }
           
      
@@ -286,7 +290,7 @@ function dealerLogic(){
                showResult(winner)
           }
      }
-     blackjackGame['isStand'] = false 
+
 }
 
 
